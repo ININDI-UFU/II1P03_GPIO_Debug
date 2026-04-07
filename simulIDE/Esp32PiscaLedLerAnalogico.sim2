@@ -1,0 +1,53 @@
+<circuit version="2.0.0-" rev="250808" stepSize="1000000" stepsPS="1000000" NLsteps="100000" reaStep="1000000" animate="1" anicurr="0" width="3200" height="2400" >
+
+<item itemtype="Esp32" CircId="Esp32-1" mainComp="false" Show_id="false" Show_Val="false" Pos="-412,-44" rotation="0" hflip="1" vflip="1" label="Esp32-1" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" Program="C:/Users/admin/OneDrive - Universidade Federal de Uberlândia/Josue/02 AulasUFU/01 Aulas_ININD1/Pratica/EININDI02_GitHub_VSCode_PIO_DebugESP32/simulIDE/firmware_esp32_4MB.bin" />
+
+<item itemtype="Probe" CircId="Probe-2" mainComp="false" Show_id="false" Show_Val="true" Pos="-164,-56" rotation="-45" hflip="1" vflip="1" label="Probe-2" idLabPos="16,-16" labelrot="45" valLabPos="16,0" valLabRot="45" ShowVolt="true" Threshold="2.5 V" Small="false" Pause="false" />
+
+<item itemtype="Fixed Voltage" CircId="Fixed Voltage-3" mainComp="false" Show_id="false" Show_Val="false" Pos="-284,100" rotation="-180" hflip="1" vflip="1" label="Fixed Voltage-3" idLabPos="-64,-24" labelrot="0" valLabPos="-16,8" valLabRot="0" Voltage="5 V" Small="false" Out="false" />
+
+<item itemtype="Oscope" CircId="Oscope-4" mainComp="false" Show_id="false" Show_Val="false" Pos="-80,40" rotation="0" hflip="1" vflip="1" label="Oscope-4" idLabPos="-90,-100" labelrot="0" valLabPos="-16,20" valLabRot="0" Basic_X="135 _px" Basic_Y="135 _px" BufferSize="600000" connectGnd="true" InputImped="10 MΩ" TestTime="0 ns" DoTest="false" TimDiv="200000000000" TimPos="0,0,0,0," VolDiv="1,1,1,1," Tunnels=",,,," Trigger="4" Filter="0.1 V" AutoSC="4" Tracks="1" HideCh="false,false,false,false," VolPos="0,0,0,0," />
+
+<item itemtype="Probe" CircId="Probe-6" mainComp="false" Show_id="false" Show_Val="true" Pos="-228,44" rotation="-45" hflip="1" vflip="1" label="Probe-6" idLabPos="16,-16" labelrot="45" valLabPos="16,0" valLabRot="45" ShowVolt="true" Threshold="2.5 V" Small="false" Pause="false" />
+
+<item itemtype="Fixed Voltage" CircId="Fixed Voltage-7" mainComp="false" Show_id="false" Show_Val="false" Pos="-284,116" rotation="-180" hflip="1" vflip="1" label="Fixed Voltage-7" idLabPos="-64,-24" labelrot="0" valLabPos="-16,8" valLabRot="0" Voltage="5 V" Small="false" Out="true" />
+
+<item itemtype="Resistor" CircId="Resistor-8" mainComp="false" ShowProp="Resistance" Show_id="false" Show_Val="true" Pos="-316,160" rotation="90" hflip="1" vflip="1" label="Resistor-8" idLabPos="-16,-24" labelrot="0" valLabPos="-16,6" valLabRot="0" Resistance="1 kΩ" />
+
+<item itemtype="Ground" CircId="Ground-10" mainComp="false" Show_id="false" Show_Val="false" Pos="-316,204" rotation="0" hflip="1" vflip="1" label="Ground-10" idLabPos="-16,8" labelrot="0" valLabPos="-16,20" valLabRot="0" />
+
+<item itemtype="SerialPort" CircId="SerialPort-12" mainComp="false" Show_id="false" Show_Val="false" Pos="-384,-112" rotation="0" hflip="1" vflip="1" label="SerialPort-12" idLabPos="-20,-32" labelrot="0" valLabPos="-16,20" valLabRot="0" Auto="true" Port="\\.\CNCA0" Baudrate="9600 _Bd" DataBits="8 _bits" StopBits="1 _bits" SerialMon="false" />
+
+<item itemtype="Ssd1306" CircId="Ssd1306-13" mainComp="false" Show_id="true" Show_Val="false" Pos="-168,-136" rotation="0" hflip="1" vflip="1" label="Ssd1306-13" idLabPos="-32,-60" labelrot="0" valLabPos="-16,20" valLabRot="0" Color="White" Width="128 _px" Height="64 _px" Rotate="true" Control_Code="60" Frequency="100 _kHz" />
+
+<item itemtype="Node" CircId="Node-11" mainComp="false" Pos="-316,116" />
+
+<item itemtype="Node" CircId="Node-18" mainComp="false" Pos="-180,-28" />
+
+<item itemtype="Connector" uid="Connector-7" startpinid="Esp32-1-G04" endpinid="Fixed Voltage-3-outnod" pointList="-308,84,-308,100,-300,100" />
+
+<item itemtype="Connector" uid="Connector-8" startpinid="Esp32-1-G16" endpinid="Probe-6-inpin" pointList="-284,60,-244,60" />
+
+<item itemtype="Connector" uid="Connector-13" startpinid="Ground-10-Gnd" endpinid="Resistor-8-rPin" pointList="-316,188,-316,176" />
+
+<item itemtype="Connector" uid="Connector-19" startpinid="Node-11-1" endpinid="Esp32-1-G00" pointList="-316,116,-316,84" />
+
+<item itemtype="Connector" uid="Connector-20" startpinid="Fixed Voltage-7-outnod" endpinid="Node-11-0" pointList="-300,116,-316,116" />
+
+<item itemtype="Connector" uid="Connector-21" startpinid="Node-11-2" endpinid="Resistor-8-lPin" pointList="-316,116,-316,144" />
+
+<item itemtype="Connector" uid="Connector-44" startpinid="SerialPort-12-pin1" endpinid="Esp32-1-G01" pointList="-424,-104,-340,-104,-340,-52" />
+
+<item itemtype="Connector" uid="Connector-48" startpinid="Esp32-1-G03" endpinid="SerialPort-12-pin0" pointList="-332,-52,-332,-120,-424,-120" />
+
+<item itemtype="Connector" uid="Connector-62" startpinid="Esp32-1-G21" endpinid="Ssd1306-13-PinSda" pointList="-348,-52,-348,-68,-208,-68,-208,-88" />
+
+<item itemtype="Connector" uid="Connector-63" startpinid="Esp32-1-G22" endpinid="Ssd1306-13-PinSck" pointList="-324,-52,-324,-76,-216,-76,-216,-88" />
+
+<item itemtype="Connector" uid="Connector-69" startpinid="Probe-2-inpin" endpinid="Node-18-1" pointList="-180,-40,-180,-28" />
+
+<item itemtype="Connector" uid="Connector-70" startpinid="Esp32-1-G23" endpinid="Node-18-0" pointList="-284,-28,-180,-28" />
+
+<item itemtype="Connector" uid="Connector-71" startpinid="Node-18-2" endpinid="Oscope-4-Pin0" pointList="-180,-28,-180,-8,-168,-8" />
+
+</circuit>

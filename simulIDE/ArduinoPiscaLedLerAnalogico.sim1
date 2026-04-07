@@ -1,0 +1,51 @@
+<<<<<<< HEAD
+<circuit version="1.1.0-SR1" rev="2005" stepSize="1000000" stepsPS="1000000" NLsteps="100000" reaStep="1000000" animate="0" >
+=======
+<circuit version="" rev="1751" stepSize="1000000" stepsPS="1000000" NLsteps="100000" reaStep="1000000" animate="0" >
+>>>>>>> 8a400ee2ad2095db36c5dc4b108c2565eb5392f0
+
+<item itemtype="Led" CircId="Led-80" mainComp="false" Show_id="false" Show_Val="false" Pos="-156,-176" rotation="90" hflip="1" vflip="1" label="Led-80" idLabPos="-16,-24" labelrot="0" valLabPos="0,0" valLabRot="0" Color="Yellow" Grounded="false" Threshold="2.4 V" MaxCurrent="0.03 A" Resistance="0.6 Ω" />
+
+<item itemtype="Subcircuit" CircId="Uno-1" mainComp="false" Show_id="true" Show_Val="false" Pos="-100,-244" rotation="0" hflip="1" vflip="1" label="Arduino Uno-2" idLabPos="56,-16" labelrot="0" valLabPos="0,0" valLabRot="0" Logic_Symbol="false">
+<<<<<<< HEAD
+<mainCompProps MainCompId="mega328-109" Frequency="16 MHz" Program="../../../../../../../../../SourceCode/0II1/EININDI02_GitHub_VSCode_PIO/.pio/build/uno/firmware.hex" Auto_Load="false" saveEepr="true" MainMcu="true" SerialMon="-1" />
+=======
+<mainCompProps MainCompId="1_mega328-109" Frequency="16 MHz" Program="../.pio/build/uno/firmware.hex" Auto_Load="false" saveEepr="true" SerialMon="-1" />
+>>>>>>> 8a400ee2ad2095db36c5dc4b108c2565eb5392f0
+</item>
+
+<item itemtype="Resistor" CircId="Resistor-66" mainComp="false" ShowProp="Resistance" Show_id="false" Show_Val="true" Pos="-128,-204" rotation="0" hflip="1" vflip="1" label="Resistor-66" idLabPos="-12,-20" labelrot="0" valLabPos="-12,-19" valLabRot="0" Resistance="100 Ω" />
+
+<<<<<<< HEAD
+<item itemtype="Potentiometer" CircId="Potentiometer-83" mainComp="false" ShowProp="Value_Ohm" Show_id="false" Show_Val="true" Pos="116,-228" rotation="90" hflip="1" vflip="-1" label="Potentiometer-83" idLabPos="-16,-40" labelrot="0" valLabPos="15.5221,-4.02959" valLabRot="-90" Resistance="1 kΩ" Value_Ohm="0 Ω" Slider="false" Scale="1" />
+
+<item itemtype="SerialPort" CircId="SerialPort-86" mainComp="false" Show_id="false" Show_Val="false" Pos="-60,-284" rotation="0" hflip="1" vflip="1" label="SerialPort-86" idLabPos="-20,-32" labelrot="0" valLabPos="-16,20" valLabRot="0" Auto="false" Port="COM4" Baudrate="9600 _Bd" DataBits="8 _bits" StopBits="1 _bits" SerialMon="false" />
+=======
+<item itemtype="Potentiometer" CircId="Potentiometer-83" mainComp="false" ShowProp="Value_Ohm" Show_id="false" Show_Val="true" Pos="116,-228" rotation="90" hflip="1" vflip="-1" label="Potentiometer-83" idLabPos="-16,-40" labelrot="0" valLabPos="-12,-13" valLabRot="-270" Resistance="1 kΩ" Value_Ohm="719 Ω" Slider="false" Scale="1" />
+
+<item itemtype="SerialPort" CircId="SerialPort-84" mainComp="false" Show_id="false" Show_Val="false" Pos="-60,-284" rotation="0" hflip="1" vflip="1" label="SerialPort-84" idLabPos="-20,-32" labelrot="0" valLabPos="-16,20" valLabRot="0" Port="COM11" Baudrate="9600 _Bauds" DataBits="8 _Bits" StopBits="1 _Bits" SerialMon="false" />
+>>>>>>> 8a400ee2ad2095db36c5dc4b108c2565eb5392f0
+
+<item itemtype="Connector" uid="connector-84" startpinid="Resistor-66-rPin" endpinid="Uno-1-3" pointList="-112,-204,-92,-204" />
+
+<item itemtype="Connector" uid="connector-85" startpinid="Led-80-lPin" endpinid="Resistor-66-lPin" pointList="-156,-192,-156,-204,-144,-204" />
+
+<item itemtype="Connector" uid="connector-86" startpinid="Led-80-rPin" endpinid="Uno-1-GND2" pointList="-156,-160,-156,-108,-92,-108" />
+
+<item itemtype="Connector" uid="connector-87" startpinid="Potentiometer-83-PinM" endpinid="Uno-1-A5" pointList="100,-228,52,-228" />
+
+<item itemtype="Connector" uid="Connector-93" startpinid="Potentiometer-83-PinA" endpinid="Uno-1-GND1" pointList="116,-212,116,-156,52,-156" />
+
+<item itemtype="Connector" uid="Connector-94" startpinid="Potentiometer-83-PinB" endpinid="Uno-1-5V0" pointList="116,-244,116,-272,168,-272,168,-148,52,-148" />
+
+<<<<<<< HEAD
+<item itemtype="Connector" uid="Connector-100" startpinid="Uno-1-1" endpinid="SerialPort-86-pin1" pointList="-92,-220,-68,-220,-68,-276,-100,-276" />
+
+<item itemtype="Connector" uid="Connector-101" startpinid="Uno-1-0" endpinid="SerialPort-86-pin0" pointList="-92,-228,-116,-228,-116,-292,-100,-292" />
+=======
+<item itemtype="Connector" uid="Connector-95" startpinid="Uno-1-1" endpinid="SerialPort-84-pin1" pointList="-92,-220,-68,-220,-68,-276,-100,-276" />
+
+<item itemtype="Connector" uid="Connector-96" startpinid="SerialPort-84-pin0" endpinid="Uno-1-0" pointList="-100,-292,-128,-292,-128,-228,-92,-228" />
+>>>>>>> 8a400ee2ad2095db36c5dc4b108c2565eb5392f0
+
+</circuit>
