@@ -1,38 +1,16 @@
-/**
- * @file esp0.cpp
- * @brief Exemplo didático para praticar técnicas de debug no VS Code / PlatformIO.
- *        Usa os drivers diretamente (sem iikit.h / wserial).
- *        Saída de dados: Serial (monitor serial ou plot via ">var:ts:val").
- *
- * ==========================================================================
- * GUIA RÁPIDO DE DEBUG
- * ==========================================================================
- *
- * 1. STEP INTO (F11)
- *    Pause em updateAll() e pressione F11 sobre readSensors() para
- *    entrar e ver pot1Value / pot2Value sendo lidos linha a linha.
- *
- * 2. STEP OVER (F10)
- *    Pause em updateAll() e pressione F10 sobre updateUI() para
- *    executar o bloco de display/Serial sem entrar nos detalhes.
- *
- * 3. BREAKPOINT CONDICIONAL — por número de vezes (Hit Count)
- *    Clique com botão direito no breakpoint de "loopCount++"
- *    → "Edit Breakpoint..." → "Hit Count" → informe 10.
- *    O debugger pausará somente na 10ª chamada.
- *
- * 4. BREAKPOINT CONDICIONAL — por valor de variável (Expression)
- *    Clique com botão direito no breakpoint de "releState = ..."
- *    → "Edit Breakpoint..." → "Expression" → informe:
- *        pot1Value >= 16384
- *    O debugger pausará somente quando o POT ultrapassar 50%.
- * ==========================================================================
- */
-
 #include <Arduino.h>
 #include "services/ads1115.h"         // ads1115  — ADS1115 ADC externo
 #include "services/display_ssd1306.h" // disp     — display OLED SSD1306
-#include "util/lasecGPIOKit.h"        // def_pin_* — só as constantes de pino
+
+// --------------------------------------------------------------------------
+// CONSTANTES DE CONFIGURAÇÃO
+// --------------------------------------------------------------------------
+
+// Pinos do kit (mesmos valores de lasecGPIOKit.h)
+static constexpr uint8_t PIN_LED1  = 23;  ///< def_pin_D1   — LED / saída digital 1
+static constexpr uint8_t PIN_RELE  = 27;  ///< def_pin_RELE — relé
+static constexpr uint8_t PIN_SDA   = 21;  ///< def_pin_SDA  — I2C SDA (display)
+static constexpr uint8_t PIN_SCL   = 22;  ///< def_pin_SCL  — I2C SCL (display)
 
 // --------------------------------------------------------------------------
 // VARIÁVEIS GLOBAIS — visíveis na aba "Variables" do debugger
@@ -57,49 +35,25 @@ static bool releState = false;
 
 // --------------------------------------------------------------------------
 // FUNÇÕES AUXILIARES
-// Use Step Into (F11) para entrar; Step Over (F10) para pular.
 // --------------------------------------------------------------------------
 
-/**
- * @brief Lê os dois potenciômetros e armazena nos globais.
- *
- * Ponto de prática para Step Into (F11):
- *   Pause em updateAll() → pressione F11 sobre readSensors() →
- *   você entrará aqui e verá pot1Value e pot2Value sendo preenchidos.
- */
 void readSensors() {
     pot1Value = ads1115.analogReadPot1();  // inspecione pot1Value após esta linha
     pot2Value = ads1115.analogReadPot2();  // inspecione pot2Value após esta linha
 }
 
-/**
- * @brief Calcula saídas: pisca LED D1 e aciona Relé conforme pot1Value.
- *
- * Ponto de prática para breakpoint condicional por valor (Expression):
- *   Coloque breakpoint na linha "releState = ..." e adicione:
- *       pot1Value >= 16384
- */
 void processOutputs() {
-    // LED alterna a cada 5 chamadas (~500 ms com PERIOD_MS = 100)
+    // LED alterna a cada 5 chamadas (5 * 100 ms)
     if ((loopCount % 5) == 0) {
         ledD1State = !ledD1State;
-        digitalWrite(def_pin_D1, ledD1State ? HIGH : LOW);
+        digitalWrite(PIN_LED1, ledD1State ? HIGH : LOW);
     }
 
     // Relé ativa quando pot1 ultrapassa 50% da escala (0–32767)
-    releState = (pot1Value >= 16384);           // ← breakpoint condicional por valor aqui
-    digitalWrite(def_pin_RELE, releState ? HIGH : LOW);
+    releState = (pot1Value >= 16384); // ← breakpoint condicional por valor aqui
+    digitalWrite(PIN_RELE, releState ? HIGH : LOW);
 }
 
-/**
- * @brief Atualiza o display OLED e envia dados para o monitor serial.
- *
- * Saída no formato Serial Plotter do Arduino / VS Code:
- *   >varName:timestamp_ms:valor
- *
- * Ponto de prática para Step Over (F10):
- *   Pressione F10 sobre updateUI() para executar sem entrar nos detalhes.
- */
 void updateUI() {
     // Display OLED — linha 2 e 3
     disp.setText(2, ("P1:" + String(pot1Value)).c_str());
@@ -125,7 +79,7 @@ void setup() {
     Serial.begin(115200);
 
     // Display OLED
-    if (!disp.begin(def_pin_SDA, def_pin_SCL)) {
+    if (!disp.begin(PIN_SDA, PIN_SCL)) {
         Serial.println("Erro: display nao inicializado!");
     }
     disp.setText(1, "Debug Demo");
@@ -136,17 +90,15 @@ void setup() {
         Serial.println("Erro: ADS1115 nao encontrado!");
     }
 
-    // Pinos de saída — mesma configuração de lasecGPIOKit::begin()
-    pinMode(def_pin_D1,   OUTPUT);  digitalWrite(def_pin_D1,   LOW);
-    pinMode(def_pin_RELE, OUTPUT);  digitalWrite(def_pin_RELE, LOW);
+    pinMode(PIN_LED1, OUTPUT);  digitalWrite(PIN_LED1, LOW);
+    pinMode(PIN_RELE, OUTPUT);  digitalWrite(PIN_RELE, LOW);
 }
 
-#define PERIOD_MS 100
 static uint32_t lastMs = 0;
 
 void loop() {
     const uint32_t now = millis();
-    if ((now - lastMs) >= PERIOD_MS) {
+    if ((now - lastMs) >= 100) {
         lastMs = now;
         updateAll();  // ← ponto de entrada principal para breakpoints
     }

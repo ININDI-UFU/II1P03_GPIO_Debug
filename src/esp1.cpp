@@ -19,27 +19,11 @@ static bool ledD1State = false;
 /** Estado atual do Relé (true = ativado). */
 static bool releState  = false;
 
-/**
- * @brief Lê os dois potenciômetros e armazena nos globais.
- *
- * Ponto de prática para Step Into:
- *   Pause em updateAll(), posicione o cursor em readSensors() e
- *   pressione F11 — você entrará aqui e verá pot1Value e pot2Value
- *   sendo preenchidos linha a linha.
- */
 void readSensors() {
     pot1Value = IIKit.analogReadPot1();   // inspecione pot1Value após esta linha
     pot2Value = IIKit.analogReadPot2();   // inspecione pot2Value após esta linha
 }
 
-/**
- * @brief Calcula saídas: pisca LED e aciona relé conforme pot1Value.
- *
- * Ponto de prática para breakpoint condicional por valor:
- *   Coloque breakpoint na linha "releState = ..." e adicione a condição:
- *       pot1Value >= 16384
- *   O debugger pausará somente quando o potenciômetro passar de 50%.
- */
 void processOutputs() {
     // LED alterna a cada 5 chamadas (~500 ms com período de 100 ms)
     if ((loopCount % 5) == 0) {
@@ -52,13 +36,6 @@ void processOutputs() {
     digitalWrite(def_pin_RELE, releState ? HIGH : LOW);
 }
 
-/**
- * @brief Atualiza o display OLED e envia dados para plot serial/UDP.
- *
- * Ponto de prática para Step Over:
- *   Pressione F10 nesta chamada para executar o driver todo de uma vez
- *   sem precisar entrar nos detalhes internos.
- */
 void updateUI() {
     disp.setText(2, ("P1:" + String(pot1Value)).c_str());
     disp.setText(3, ("P2:" + String(pot2Value)).c_str());
